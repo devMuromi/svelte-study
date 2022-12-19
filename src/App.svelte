@@ -3,6 +3,9 @@
 
 	let name = 'Muromi';
 	let age = 21;
+	let title = "here come's title";
+	let description = 'A simple description';
+	let imageURL = 'https://randomuser.me/api/portraits';
 
 	$: uppercaseName = name.toUpperCase();
 
@@ -28,7 +31,11 @@
 	<button on:click={incrementAge}>Change Age</button>
 	<!-- <button on:click={changeName}>Change Name</button> -->
 	<input type="text" bind:value={name} />
-	<ContactCard userName={name} />
+	<input type="text" bind:value={title} />
+	<textarea rows="3" bind:value={description} />
+	<input type="text" bind:value={imageURL} />
+
+	<ContactCard userName={name} jobTitle={title} {description} {imageURL} />
 </main>
 
 <style>
