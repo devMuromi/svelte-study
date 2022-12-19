@@ -4,6 +4,10 @@
 
   $: uppercaseName = name.toUpperCase();
 
+  $: if (name == "rika") {
+    age = 1;
+  }
+
   function incrementAge() {
     age += 1;
   }
