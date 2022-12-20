@@ -1,61 +1,45 @@
 <script>
 	import ContactCard from './ContactCard.svelte';
 
-	let name = 'Muromi';
-	let age = 21;
-	let title = "here come's title";
-	let description = 'A simple description';
-	let imageURL = 'https://randomuser.me/api/portraits';
+	let name = 'Max';
+	let title = '';
+	let image = '';
+	let description = '';
+	let done = false;
 
-	$: uppercaseName = name.toUpperCase();
-
-	$: if (name == 'rika') {
-		age = 1;
+	function addContact() {
+		done = true;
 	}
-
-	function incrementAge() {
-		age += 1;
-	}
-
-	//   function changeName() {
-	//     name = "rika";
-	//   }
-
-	//   function nameInput(e) {
-	//     name = e.target.value;
-	//   }
 </script>
 
-<main>
-	<h1>Hello {uppercaseName}!, my age is {age}</h1>
-	<button on:click={incrementAge}>Change Age</button>
-	<!-- <button on:click={changeName}>Change Name</button> -->
-	<input type="text" bind:value={name} />
-	<input type="text" bind:value={title} />
-	<textarea rows="3" bind:value={description} />
-	<input type="text" bind:value={imageURL} />
+<div id="form">
+	<div class="form-control">
+		<label for="userName">User Name</label>
+		<input type="text" bind:value={name} id="userName" />
+	</div>
+	<div class="form-control">
+		<label for="jobTitle">Job Title</label>
+		<input type="text" bind:value={title} id="jobTitle" />
+	</div>
+	<div class="form-control">
+		<label for="image">Image URL</label>
+		<input type="text" bind:value={image} id="image" />
+	</div>
+	<div class="form-control">
+		<label for="desc">Description</label>
+		<textarea rows="3" bind:value={description} id="desc" />
+	</div>
+</div>
 
-	<ContactCard userName={name} jobTitle={title} {description} {imageURL} />
-</main>
+<button on:click={addContact}>Add contact card</button>
+
+{#if done}
+	<ContactCard userName={name} jobTitle={title} {description} userImage={image} />
+{/if}
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
+	#form {
+		width: 30rem;
+		max-width: 100%;
 	}
 </style>
